@@ -1,0 +1,107 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:p="http://primefaces.org/ui"
+    template="/views/layout/template.xhtml">
+
+    <ui:define name="title-page">#{msg['navigation.client.index']}</ui:define>
+    <ui:define name="title-content">#{msg['navigation.client.index']}</ui:define>
+    <ui:define name="title-content-optional" />
+
+    <ui:define name="breadcrumb" />
+
+    <ui:define name="content">
+
+        <h:form id="client">
+            <p:messages
+                id="messages"
+                closable="true"
+                showDetail="true"
+                autoUpdate="true" />
+
+            <p:link outcome="/views/client/ajouter">
+                <i class="fa fa-plus"></i>
+                #{msg['navigation.client.ajouter']}
+            </p:link>
+
+            <p:dataTable
+                id="clientTable"
+                lazy="true"
+                var="client"
+                value="#{clientBean.lazyModel}"
+                selectionMode="single"
+                selection="#{clientBean.selectedClient}"
+                rows="10"
+                rowKey="#{client.id}"
+                paginator="true"
+                paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                rowsPerPageTemplate="5,10,15">
+
+                <p:ajax
+                    event="rowSelect"
+                    update="client:clientDetail"
+                    listener="#{clientBean.onRowSelect}"
+                    oncomplete="PF('clientDialog').show()" />
+
+                <p:column
+                    headerText="#{msg['libelle.client.code']}"
+                    sortBy="#{client.code}"
+                    filterBy="#{client.code}">
+                    <h:outputText value="#{client.code}" />
+                </p:column>
+
+                <p:column
+                    headerText="#{msg['libelle.client.nom']}"
+                    sortBy="#{client.nom}"
+                    filterBy="#{client.nom}">
+                    <h:outputText value="#{client.nom}" />
+                </p:column>
+
+                <p:column
+                    headerText="#{msg['libelle.client.prenom']}"
+                    sortBy="#{client.prenom}"
+                    filterBy="#{client.prenom}">
+                    <h:outputText value="#{client.prenom}" />
+                </p:column>
+
+                <p:column
+                    headerText="#{msg['libelle.client.email']}"
+                    sortBy="#{client.email}"
+                    filterBy="#{client.email}">
+                    <h:outputText value="#{client.email}" />
+                </p:column>
+            </p:dataTable>
+
+            <p:dialog
+                modal="true"
+                showEffect="fade"
+                hideEffect="fade"
+                widgetVar="clientDialog"
+                header="#{msg['libelle.client.details']}">
+                <p:outputPanel id="clientDetail">
+                    <p:panelGrid
+                        layout="grid"
+                        columns="2"
+                        rendered="#{not empty clientBean.selectedClient}">
+                        
+                        <h:outputText value="#{msg['libelle.client.code']}" />
+                        <h:outputText value="#{clientBean.selectedClient.code}" />
+
+                        <h:outputText value="#{msg['libelle.client.nom']}" />
+                        <h:outputText value="#{clientBean.selectedClient.nom}" />
+
+                        <h:outputText value="#{msg['libelle.client.prenom']}" />
+                        <h:outputText value="#{clientBean.selectedClient.prenom}" />
+
+                        <h:outputText value="#{msg['libelle.client.email']}" />
+                        <h:outputText value="#{clientBean.selectedClient.email}" />
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,242 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:p="http://primefaces.org/ui"
+    template="/views/layout/template.xhtml">
+
+    <ui:define name="title-page">#{msg['navigation.client.ajouter']}</ui:define>
+    <ui:define name="title-content">#{msg['navigation.client.ajouter']}</ui:define>
+    <ui:define name="title-content-optional" />
+
+    <ui:define name="breadcrumb" >
+        <p:menuitem
+            outcome="/views/client/index"
+            value="#{msg['breadcrumb.client.index']}" />
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="box box-primary container-fluid">
+
+            <h:form id="client">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p:fieldset legend="#{msg['libelle.client.informations']}">
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="code"
+                                    value="#{msg['libelle.client.code']}" />
+                                <p:inputText
+                                    id="code"
+                                    styleClass="form-control"
+                                    value="#{clientBean.client.code}"
+                                    disabled="false"
+                                    required="true" />
+                                <p:message for="code" />
+                            </div>
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="nom"
+                                    value="#{msg['libelle.client.nom']}" />
+                                <p:inputText
+                                    id="nom"
+                                    styleClass="form-control"
+                                    value="#{clientBean.client.nom}" 
+                                    required="true" />
+                                <p:message for="nom" />
+                            </div>
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="prenom"
+                                    value="#{msg['libelle.client.prenom']}" />
+                                <p:inputText
+                                    id="prenom"
+                                    styleClass="form-control"
+                                    value="#{clientBean.client.prenom}" 
+                                    required="true" />
+                                <p:message for="prenom" />
+                            </div>
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="naissance"
+                                    value="#{msg['libelle.client.naissance']}" />
+                                <p:calendar
+                                    id="naissance"
+                                    value="#{clientBean.client.naissance}" />
+                                <p:message for="naissance" />
+                            </div>
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="email"
+                                    value="#{msg['libelle.client.email']}" />
+                                <p:inputText
+                                    id="email"
+                                    styleClass="form-control"
+                                    value="#{clientBean.client.email}"
+                                    validator="#{clientBean.validateEmail}"
+                                    required="true" />
+                                <p:message for="email" />
+                            </div>
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="fixe"
+                                    value="#{msg['libelle.client.fixe']}" />                        
+                                <p:inputMask
+                                    id="fixe"
+                                    styleClass="form-control"
+                                    value="#{clientBean.client.fixe}"
+                                    mask="#{msg['libelle.client.fixe.mask']}"
+                                    required="true"
+                                    />
+                                <p:message for="fixe" />
+                            </div>
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="mobile"
+                                    value="#{msg['libelle.client.mobile']}" />
+                                <p:inputMask
+                                    id="mobile"
+                                    styleClass="form-control"
+                                    value="#{clientBean.client.mobile}"
+                                    mask="#{msg['libelle.client.mobile.mask']}" />
+                                <p:message for="mobile" />
+                            </div>
+
+                        </p:fieldset>
+                    </div>
+                    <div class="col-md-6">
+
+                        <p:fieldset legend="#{msg['libelle.client.adresse']}">
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="numero"
+                                    value="#{msg['libelle.client.adresse.numero']}" />
+                                <p:inputText
+                                    id="numero"
+                                    styleClass="form-control"
+                                    value="#{clientBean.client.adresse.numero}"
+                                    required="true" />
+                                <p:message for="numero" />
+                            </div>
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="libelle"
+                                    value="#{msg['libelle.client.adresse.libelle']}" />
+                                <p:inputText
+                                    id="libelle"
+                                    styleClass="form-control"
+                                    value="#{clientBean.client.adresse.libelle}"
+                                    required="true" />
+                                <p:message for="libelle" />
+                            </div>
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="lieuDit"
+                                    value="#{msg['libelle.client.adresse.lieuDit']}" />
+                                <p:inputText
+                                    id="lieuDit"
+                                    styleClass="form-control"
+                                    value="#{clientBean.client.adresse.lieuDit}"
+                                    required="true" />
+                                <p:message for="lieuDit" />
+                            </div>
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="codePostal"
+                                    value="#{msg['libelle.client.adresse.codePostal']}" />
+                                <p:inputText
+                                    id="codePostal"
+                                    styleClass="form-control"
+                                    value="#{clientBean.client.adresse.codePostal}"
+                                    required="true" />
+                                <p:message for="codePostal" />
+                            </div>
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="cedex"
+                                    value="#{msg['libelle.client.adresse.cedex']}" />
+                                <p:inputText
+                                    id="cedex"
+                                    styleClass="form-control"
+                                    value="#{clientBean.client.adresse.cedex}"
+                                    required="true" />
+                                <p:message for="cedex" />
+                            </div>
+
+                            <div class="form-group">
+                                <p:outputLabel
+                                    for="commune"
+                                    value="#{msg['libelle.client.adresse.commune']}" />
+                                <p:inputText
+                                    id="commune"
+                                    styleClass="form-control"
+                                    value="#{clientBean.client.adresse.commune}"
+                                    required="true" />
+                                <p:message for="commune" />
+                            </div>
+
+                        </p:fieldset>
+                    </div>
+                </div>
+
+                <div class="form-group" style="height:auto;">
+                    <p:outputLabel
+                        for="newsletter"
+                        value="#{msg['libelle.client.autoriseNewsletter']}" />
+                    <p:selectBooleanButton
+                        id="newsletter"
+                        value="#{clientBean.client.autoriseNewsletter}"
+                        onLabel="#{msg['libelle.action.oui']}"
+                        offLabel="#{msg['libelle.action.non']}"
+                        onIcon="ui-icon-check"
+                        offIcon="ui-icon-close" />
+                    <p:message for="newsletter" />
+                </div>
+
+                <div class="form-group">
+                    <p:outputLabel for="commentaire" value="#{msg['libelle.client.commentaire']}" />
+                    <p:editor
+                        id="commentaire"
+                        widgetVar="commentaire"
+                        value="#{clientBean.client.commentaire}">
+                        <f:facet name="toolbar">
+                            <span class="ql-formats">
+                                <button class="ql-bold"></button>
+                                <button class="ql-italic"></button>
+                                <button class="ql-underline"></button>
+                                <button class="ql-strike"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <select class="ql-font"></select>
+                                <select class="ql-size"></select>
+                            </span>
+                        </f:facet>
+                    </p:editor>
+                    <p:message for="commentaire" />
+                </div>
+
+                <div class="form-group">
+                    <p:commandButton 
+                        id="submit"
+                        update="client"
+                        action="#{clientBean.save}"
+                        value="#{msg['libelle.action.ajouter']}" />
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
