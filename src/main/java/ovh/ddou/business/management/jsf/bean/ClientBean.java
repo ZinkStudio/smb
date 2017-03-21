@@ -1,6 +1,5 @@
 package ovh.ddou.business.management.jsf.bean;
 
-import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -18,7 +17,7 @@ import ovh.ddou.business.management.jsf.view.model.ClientLazyDataModel;
 @Getter
 @Named
 @ViewScoped
-public class ClientBean implements Serializable {
+public class ClientBean extends AbstractBean {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,16 +28,19 @@ public class ClientBean implements Serializable {
 
     private Client selectedClient;
 
-    private Client client;
+    private Client client = new Client();
 
     @PostConstruct
     public void load() {
+    }
+
+    public void preRenderView() {
 
         lazyModel = new ClientLazyDataModel(clientService.findAll());
     }
 
     public void save() {
-
+        
         JSFUtil.addMessage("Client Saved: ", this.client.toString());
         clientService.save(this.client);
     }

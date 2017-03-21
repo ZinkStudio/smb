@@ -5,32 +5,57 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
     xmlns:p="http://primefaces.org/ui"
-    template="/views/layout/template.xhtml">
+    template="/views/layout/base.xhtml">
+    <ui:define name="body">
+        <div class="login-box">
+            <div class="login-logo">
+                <a href="/"><b>Biz</b> Management</a>
+            </div>
 
-    <ui:define name="title-page">Accueil</ui:define>
+            <div class="login-box-body">
+                <p class="login-box-msg">
+                    Sign in to start your session
+                </p>
 
-    <ui:define name="title-content">Accueil</ui:define>
-    <ui:define name="title-content-optional">Optional description</ui:define>
-
-    <ui:define name="breadcrumb" />
-
-    <ui:define name="content">
-        <h:form prependId="false">
-            <div id="starterDiv" class="ui-fluid">
-                <center>
+                <h:form prependId="false">
                     <p:outputLabel
                         value="Échec de la connexion: le couple login/password est invalide." 
                         rendered="${!empty param['error']}" />
+
                     <p:focus />
-                    <p:panelGrid columns="2" layout="grid">
-                        <h:outputText value="login" />
-                        <p:inputText id="username" />
-                        <h:outputText value="password" />
-                        <p:password id="password" />
-                    </p:panelGrid>
-                    <p:commandButton id="submit" value="Login" ajax="false" />
-                </center>
+
+                    <div class="form-group has-feedback">
+                        <p:inputText id="username" styleClass="form-control" />
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <p:password id="password" styleClass="form-control" />
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <div class="checkbox icheck">
+                                <label>
+                                    <input type="checkbox" />
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <p:commandButton id="submit" value="Sign In" ajax="false" styleClass="btn btn-primary btn-block btn-flat" />
+                        </div>
+                    </div>
+                </h:form>
+
+                <div class="social-auth-links text-center">
+                    <p>- OR -</p>
+                </div>
+
+                <a href="#">I forgot my password</a>
             </div>
-        </h:form>
+        </div>
+
     </ui:define>
 </ui:composition>

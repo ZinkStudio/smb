@@ -7,4 +7,5 @@ import ovh.ddou.business.management.domain.model.Client;
 @Transactional
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
+    
 }

@@ -11,7 +11,10 @@
     <ui:define name="title-content">#{msg['navigation.client.index']}</ui:define>
     <ui:define name="title-content-optional" />
 
-    <ui:define name="breadcrumb" />
+    <ui:define name="breadcrumb">
+        <p:menuitem
+            value="#{msg['breadcrumb.client.index']}" />
+    </ui:define>
 
     <ui:define name="content">
 
@@ -22,10 +25,13 @@
                 showDetail="true"
                 autoUpdate="true" />
 
-            <p:link outcome="/views/client/ajouter">
-                <i class="fa fa-plus"></i>
-                #{msg['navigation.client.ajouter']}
-            </p:link>
+            <div class="btn-group pull-right">
+                <p:link outcome="/views/client/ajouter"
+                        styleClass="btn btn-default">
+                    <i class="fa fa-plus"></i>
+                    #{msg['navigation.client.ajouter']}
+                </p:link>
+            </div>
 
             <p:dataTable
                 id="clientTable"
@@ -86,7 +92,7 @@
                         layout="grid"
                         columns="2"
                         rendered="#{not empty clientBean.selectedClient}">
-                        
+
                         <h:outputText value="#{msg['libelle.client.code']}" />
                         <h:outputText value="#{clientBean.selectedClient.code}" />
 

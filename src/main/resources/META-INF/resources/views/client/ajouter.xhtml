@@ -11,10 +11,12 @@
     <ui:define name="title-content">#{msg['navigation.client.ajouter']}</ui:define>
     <ui:define name="title-content-optional" />
 
-    <ui:define name="breadcrumb" >
+    <ui:define name="breadcrumb">
         <p:menuitem
             outcome="/views/client/index"
             value="#{msg['breadcrumb.client.index']}" />
+        <p:menuitem
+            value="#{msg['breadcrumb.client.ajouter']}" />
     </ui:define>
 
     <ui:define name="content">
@@ -79,9 +81,7 @@
                                 <p:inputText
                                     id="email"
                                     styleClass="form-control"
-                                    value="#{clientBean.client.email}"
-                                    validator="#{clientBean.validateEmail}"
-                                    required="true" />
+                                    value="#{clientBean.client.email}" />
                                 <p:message for="email" />
                             </div>
 
@@ -234,7 +234,7 @@
                         id="submit"
                         update="client"
                         action="#{clientBean.save}"
-                        value="#{msg['libelle.action.ajouter']}" />
+                        value="#{msg['libelle.action.sauver']}" />
                 </div>
             </h:form>
         </div>

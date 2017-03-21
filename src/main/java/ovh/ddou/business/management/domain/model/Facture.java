@@ -16,6 +16,7 @@ import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Past;
 import lombok.Getter;
 import lombok.Setter;
 import ovh.ddou.business.management.domain.model.enums.Paiement;
@@ -31,6 +32,7 @@ public class Facture extends Entite {
 
     private static final long serialVersionUID = 1L;
 
+    @Past
     @Temporal(TemporalType.DATE)
     private Date emission;
 

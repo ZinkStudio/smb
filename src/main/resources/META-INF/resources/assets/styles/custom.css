@@ -1,0 +1,36 @@
+.content-header {
+    height: 45px;
+    overflow: hidden;
+}
+.ui-breadcrumb {
+    margin-top: -11px;
+}
+.ui-breadcrumb ul li span {
+    margin-top: -1px;
+}
+#client .btn-group {
+    margin-bottom: 1.25em;
+}
+div[id="client:clientTable"] {
+    clear: both;
+}
+#client fieldset {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+#client legend {
+    font-weight: bold;
+    color: #3C8DBC;
+    padding: .3em 1em;
+    margin-bottom: 10px;
+}
+#client span[id="client:naissance"] {
+    width: 100%;
+    display: block;
+}
+#client [for="client:newsletter"] {
+    margin-right: 0.75em;
+}
+#client span[id="client:naissance"] input {
+    width: 100%;
+}

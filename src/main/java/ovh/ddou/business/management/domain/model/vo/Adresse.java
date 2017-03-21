@@ -1,7 +1,6 @@
 package ovh.ddou.business.management.domain.model.vo;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +8,7 @@ import lombok.Setter;
 /**
  * Adresse value object implementation.
  *
- * @see https://developer.laposte.fr/products/controladresse/latest
+ * See https://developer.laposte.fr/products/controladresse/latest
  */
 @Setter
 @Getter
