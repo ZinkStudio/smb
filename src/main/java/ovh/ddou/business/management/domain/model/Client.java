@@ -12,10 +12,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import ovh.ddou.business.management.domain.model.enums.Civilite;
 
 /**
@@ -34,19 +37,24 @@ public class Client extends Entite {
     @Enumerated(EnumType.STRING)
     private Civilite civilite;
 
+    @NotBlank
+    @NotEmpty
     @NotNull(message = "Le « nom » est obligatoire")
     @Size(min = 3, max = 40, message = "Le « nom » doit avoir au minimum 3 caractères et au maximum 40 caractères")
     private String nom;
-
+    
+    @NotBlank
+    @NotEmpty
     @NotNull(message = "Le « prénom » est obligatoire")
     @Size(min = 3, max = 40, message = "Le « prénom » doit avoir au minimum 3 caractères et au maximum 40 caractères")
     private String prenom;
 
+    @Past
     @Temporal(TemporalType.DATE)
     private Date naissance;
 
     @Embedded
-    private Adresse adresse;
+    private Adresse adresse = new Adresse();
 
     @Email(message = "Le « courriel » est invalide")
     private String email;
@@ -55,7 +63,7 @@ public class Client extends Entite {
 
     private String mobile;
 
-    private Boolean estMasque;
+    private Boolean masque;
 
     private Boolean autoriseNewsletter;
 

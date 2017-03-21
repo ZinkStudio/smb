@@ -29,15 +29,15 @@ public class ClientService implements Service {
     }
 
     /**
+     * Persister un client.
      *
-     * @param <S>
-     * @param s
-     * @return
+     * @param client Un client
+     * @return Le client persisté
      */
-    public <S extends Client> S save(S s) {
+    public Client save(Client client) {
 
         LOGGER.debug("ClientServiceImpl.save()");
-        return clientRepository.save(s);
+        return clientRepository.save(client);
     }
 
 }

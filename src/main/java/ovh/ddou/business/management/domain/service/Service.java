@@ -1,10 +1,9 @@
 package ovh.ddou.business.management.domain.service;
 
 import java.io.Serializable;
-import javax.enterprise.context.Dependent;
 
 /**
- * The Class ClientService.
+ * Service interface.
  */
 public interface Service extends Serializable {
 }
